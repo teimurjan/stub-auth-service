@@ -14,10 +14,15 @@ export default class extends React.Component {
   }
 
   render() {
+    const queryParams = `access_token=${
+      localStorage.getItem('access_token')
+      }&refresh_token=${
+      localStorage.getItem('refresh_token')
+      }`;
     return (
       <ul>
         <li>
-          <a href={`${this.state.uniformUrl}/login?token=${localStorage.getItem('access_token')}`}>
+          <a href={`${this.state.uniformUrl}login?${queryParams}`}>
             Uniform
           </a>
         </li>

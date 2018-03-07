@@ -15,22 +15,27 @@ class LoginView(ApiView):
 class VerifyTokenView(ApiView):
 
     def post(self, service):
+        authorization = request.headers.get('Authorization')
+        if authorization is None:
+            return {}, 401
         return service.verify(
-            request.json.get('token')
+            authorization.replace('JWT ', '')
         )
 
 
 class CheckTokenView(ApiView):
 
     def post(self, service):
+        authorization = request.headers.get('Authorization')
+        if authorization is None:
+            return {}, 401
         return service.check(
-            request.json.get('token')
+            authorization.replace('JWT ', '')
         )
 
 
 class RefreshTokenView(ApiView):
 
     def post(self, service):
-        return service.refresh(
-            request.json.get('token')
-        )
+        token = request.json.get('refresh_token')
+        return service.refresh(token)
