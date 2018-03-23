@@ -14,11 +14,22 @@ export default class extends React.Component {
   }
 
   render() {
-    const queryParams = `access_token=${
+    let queryParams = `access_token=${
       localStorage.getItem('access_token')
       }&refresh_token=${
       localStorage.getItem('refresh_token')
       }`;
+
+    if (localStorage.getItem('redirect')) {
+      queryParams = `access_token=${
+        localStorage.getItem('access_token')
+        }&refresh_token=${
+        localStorage.getItem('refresh_token')
+        }&redirect=${
+        localStorage.getItem('redirect')  
+        }`;
+    } 
+
     return (
       <ul>
         <li>
