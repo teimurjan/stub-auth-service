@@ -1,5 +1,5 @@
 import React from 'react';
-import querystring from 'querystring';
+
 
 const HEADERS = {
   'Accept': 'application/json',
@@ -27,12 +27,12 @@ export default class extends React.Component {
     })
     .then(async response => {
       if (response.status === 200) {
-        const queries = querystring.parse(window.location.search);
+        const redirect_path = (new URL(window.location.href)).searchParams.get("redirect");
         const {access_token, refresh_token} = await response.json();
         localStorage.setItem('access_token', access_token);
         localStorage.setItem('refresh_token', refresh_token);
-        if ('redirect' in queries) {
-          localStorage.setItem('redirect', queries['redirect']);
+        if (redirect_path) {
+          localStorage.setItem('redirect', redirect_path);
         }
         this.props.history.push('/');
       } else {
