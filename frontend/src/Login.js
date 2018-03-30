@@ -27,7 +27,7 @@ export default class extends React.Component {
     })
     .then(async response => {
       if (response.status === 200) {
-        const redirect_path = (new URL(window.location.href)).searchParams.get("redirect");
+        const redirect_path = (new URL(window.location.href)).searchParams.get("redirectPath");
         const {access_token, refresh_token} = await response.json();
         localStorage.setItem('access_token', access_token);
         localStorage.setItem('refresh_token', refresh_token);
