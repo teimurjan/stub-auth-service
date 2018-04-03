@@ -4,4 +4,4 @@ ADD requirements.txt ./
 RUN apk add --update && pip install -r requirements.txt
 ADD backend ./
 EXPOSE 5000
-CMD ["python", "manage.py", "runserver"]
+CMD ["gunicorn", "app:create_app()", "-b",  "0.0.0.0:5000"]
