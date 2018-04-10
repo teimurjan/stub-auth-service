@@ -33,7 +33,7 @@ export default class extends React.Component {
     return (
       <ul>
         <li>
-          <a href={`${this.state.uniformUrl}login?${queryParams}`}>
+          <a href={`${this.state.uniformUrl}/login?${queryParams}`}>
             Uniform
           </a>
         </li>
